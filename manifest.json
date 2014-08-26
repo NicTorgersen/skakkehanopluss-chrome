@@ -2,11 +2,25 @@
     "manifest_version": 2,
     "name": "Ska'kke ha no' pluss",
     "description": "Fjerner plussartikler fra de største nettavisene.",
+    "author": "Nic",
 
     "version": "1.0",
 
-    "browser_action": {
-        "default_icon": "icon.png",
+    "page_action": {
+        "default_icon": {
+            "19": "icon.png",
+            "38": "icon.png"
+        },
+        "default_title": "Ska'kke ha no' pluss",
         "default_popup": "popup.html"
-    }
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "*://*.vg.no/",
+                "*://*.tb.no/"
+            ],
+            "js": ["libs/jquery-1.11.1.min.js", "remove_plus.js"]
+        }
+    ]
 }
