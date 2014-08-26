@@ -1,4 +1,7 @@
 (function ($) {
+
+    // to do: clean up
+
     $(document).ready(function () {
 
         var targets = $('.article-content .df-img-skin-pluss'),
