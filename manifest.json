@@ -1,0 +1,12 @@
+{
+    "manifest_version": 2,
+    "name": "Ska'kke ha no' pluss",
+    "description": "Fjerner plussartikler fra de største nettavisene.",
+
+    "version": "1.0",
+
+    "browser_action": {
+        "default_icon": "icon.png",
+        "default_popup": "popup.html"
+    }
+}
