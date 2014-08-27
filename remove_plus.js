@@ -5,8 +5,6 @@
         var url = host,
             elements = [],
             count = 0;
-
-        console.log(url);
         switch (url) {
             case "www.vg.no":
                 var targets = $('.article-content .df-img-skin-pluss');
@@ -15,9 +13,6 @@
                     if (typeof $(element).parent('.article-extract') !== 'undefined') {
                         elements.push($(this).closest('.article-extract'));
                     }
-
-                    count++;
-
                     if (typeof $(element).parent('.df-container') !== 'undefined') {
                         elements.push($(this).closest('.df-container'));
                     }
@@ -32,6 +27,8 @@
                     if (typeof $(element).parent('.np-modTheme-2') !== 'undefined') {
                         elements.push($(element).closest('.np-modTheme-2'));
                     }
+
+                    count++;
                     elements.push($(this));
                 });
                 break;
@@ -43,9 +40,15 @@
                         elements.push($(element));
                     });
                 });
-
-                count++;
                 break;
+            case 'www.adressa.no':
+                var targets = [$('.pluss').closest('.widget'), $('.plussDeck')];
+
+                $.each(targets, function (index, elms) {
+                    $.each(elms, function (index, element) {
+                        elements.push($(element));
+                    });
+                });
         }
         return elements;
     }
