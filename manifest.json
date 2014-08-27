@@ -2,26 +2,34 @@
     "manifest_version": 2,
     "name": "Ska'kke ha no' pluss",
     "short_name": "Ska'kke ha no' +",
-    "description": "Fjerner plussartikler fra vg.no.",
+    "description": "Fjerner plussartikler fra vg.no, tb.no og dagbladet.no.",
     "author": "Nic",
 
-    "version": "1.1",
+    "version": "1.2",
 
     "page_action": {
         "default_icon": {
-            "19": "icon.png",
             "38": "icon.png"
         },
         "default_title": "Ska'kke ha no' pluss",
         "default_popup": "popup.html"
     },
+    "permissions": [
+        "*://*.vg.no/*",
+        "*://*.tb.no/*",
+        "*://*.dagbladet.no/"
+    ],
     "content_scripts": [
         {
             "matches": [
                 "*://*.vg.no/",
-                "*://*.tb.no/"
+                "*://*.tb.no/",
+                "*://*.dagbladet.no/"
             ],
             "js": ["libs/jquery-1.11.1.min.js", "remove_plus.js"]
         }
-    ]
+    ],
+    "background": {
+        "page": "background.html"
+    }
 }
