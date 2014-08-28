@@ -18,7 +18,8 @@
         "*://*.vg.no/*",
         "*://*.tb.no/*",
         "*://*.dagbladet.no/",
-        "*://*.adressa.no/"
+        "*://*.adressa.no/",
+        "notifications"
     ],
     "background": {
         "scripts": ["background/background.js"],
