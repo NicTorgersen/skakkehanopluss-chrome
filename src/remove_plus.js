@@ -14,13 +14,12 @@
 
                 $.each(targets, function (index, element) {
                     if (typeof $(element).parent('.article-extract') !== 'undefined') {
+                        count++;
                         elements.push($(this).closest('.article-extract'));
                     }
                     if (typeof $(element).parent('.df-container') !== 'undefined') {
                         elements.push($(this).closest('.df-container'));
                     }
-
-                    count++;
                 });
 
                 break;
@@ -31,10 +30,10 @@
                     if (typeof $(element).parent('.np-modTheme-2') !== 'undefined') {
                         elements.push($(element).closest('.np-modTheme-2'));
                     }
-
-                    count++;
                     elements.push($(this));
+                    count++;
                 });
+
                 break;
 
             case 'www.dagbladet.no':
@@ -43,8 +42,10 @@
                 $.each(targets, function (index, elms) {
                     $.each(elms, function (index, element) {
                         elements.push($(element));
+                        count++;
                     });
                 });
+
                 break;
 
             case 'www.adressa.no':
@@ -53,21 +54,29 @@
                 $.each(targets, function (index, elms) {
                     $.each(elms, function (index, element) {
                         elements.push($(element));
+                        count++;
                     });
                 });
+
                 break;
         }
-        return elements;
+        return {
+            elements: elements,
+            count: count
+        };
     }
 
     $(document).ready(function () {
         var site = window.location.host,
-            parent_nodes = getSiteElements(site);
+            parent_nodes = getSiteElements(site),
+            count = parent_nodes.count;
 
-        for (node in parent_nodes) {
-            if (parent_nodes[node].length > 0 && typeof parent_nodes[node] !== 'undefined') {
-                parent_nodes[node].css('display', 'none');
-                parent_nodes[node] = undefined;
+        chrome.runtime.sendMessage({fromCS: true, url: site, objectsFound: count});
+
+        for (node in parent_nodes.elements) {
+            if (parent_nodes.elements[node].length > 0 && typeof parent_nodes.elements[node] !== 'undefined') {
+                parent_nodes.elements[node].css('display', 'none');
+                parent_nodes.elements[node] = undefined;
             }
         }
 

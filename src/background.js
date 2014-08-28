@@ -1,18 +1,11 @@
-(function () {
-    var sites = [
-        "www.vg.no",
-        "www.tb.no"
-    ];
+var objectsFound = 0,
+    url = '';
 
-    console.log("test");
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+    if (request.fromCS) {
+        chrome.pageAction.show(sender.tab.id);
 
-    function checkForValidUrl (tabID, changeInfo, tab) {
-        for (site in sites) {
-            if (tab.url.indexOf(sites[site]) == 0) {
-                chrome.pageAction.show(tabID);
-            }
-        }
+        objectsFound = request.objectsFound;
+        url = request.url;
     }
-
-    chrome.tabs.onUpdated.addListener(checkForValidUrl);
-})();
+});

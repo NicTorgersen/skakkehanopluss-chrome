@@ -9,7 +9,7 @@
 
     "page_action": {
         "default_icon": {
-            "38": "icon.png"
+            "38": "icon38.png"
         },
         "default_title": "Ska'kke ha no' pluss",
         "default_popup": "popup.html"
@@ -20,6 +20,10 @@
         "*://*.dagbladet.no/",
         "*://*.adressa.no/"
     ],
+    "background": {
+        "scripts": ["background.js"],
+        "persistent": false
+    },
     "content_scripts": [
         {
             "matches": [
