@@ -1,11 +1,14 @@
 (function ($) {
 
     // to do: clean up
+
     function getSiteElements (host) {
         var url = host,
             elements = [],
             count = 0;
+
         switch (url) {
+
             case "www.vg.no":
                 var targets = $('.article-content .df-img-skin-pluss');
 
@@ -21,6 +24,7 @@
                 });
 
                 break;
+
             case "www.tb.no":
                 var targets = $('.fw-pluss-label').closest('article');
                 $.each(targets, function (index, element) {
@@ -32,6 +36,7 @@
                     elements.push($(this));
                 });
                 break;
+
             case 'www.dagbladet.no':
                 var targets = [$('.plussEmblem').closest('.ddCell'), $('.plussbox_container')];
 
@@ -41,6 +46,7 @@
                     });
                 });
                 break;
+
             case 'www.adressa.no':
                 var targets = [$('.pluss').closest('.widget'), $('.plussDeck')];
 
@@ -49,6 +55,7 @@
                         elements.push($(element));
                     });
                 });
+                break;
         }
         return elements;
     }
