@@ -71,7 +71,7 @@
             parent_nodes = getSiteElements(site),
             count = parent_nodes.count;
 
-        chrome.runtime.sendMessage({fromCS: true, url: site, objectsFound: count});
+        chrome.runtime.sendMessage({fromCS: true, type: 'main', url: site, objectsFound: count});
 
         for (node in parent_nodes.elements) {
             if (parent_nodes.elements[node].length > 0 && typeof parent_nodes.elements[node] !== 'undefined') {
