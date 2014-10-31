@@ -25,11 +25,11 @@
                 break;
 
             case "www.tb.no":
-                var targets = $('.fw-pluss-label').closest('article');
+                var targets = $('.bg-paywall');
                 $.each(targets, function (index, element) {
-                    if (typeof $(element).parent('.np-modTheme-2') !== 'undefined') {
+                    /*if (typeof $(element).parent('.np-modTheme-2') !== 'undefined') {
                         elements.push($(element).closest('.np-modTheme-2'));
-                    }
+                    }*/
                     elements.push($(this));
                     count++;
                 });
