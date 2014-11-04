@@ -2,10 +2,10 @@
     "manifest_version": 2,
     "name": "Ska'kke ha no' pluss",
     "short_name": "Ska'kke ha no' +",
-    "description": "Fjerner plussartikler fra vg.no, tb.no, adressa.no og dagbladet.no.",
+    "description": "Fjerner plussartikler fra vg.no, tb.no, adressa.no, bt.no og dagbladet.no.",
     "author": "Nic",
 
-    "version": "1.3.4",
+    "version": "1.3.5",
 
     "icons": {
         "16": "assets/icon16.png",
@@ -25,6 +25,7 @@
         "*://*.tb.no/*",
         "*://*.dagbladet.no/",
         "*://*.adressa.no/",
+        "*://*.bt.no/",
         "notifications"
     ],
     "background": {
@@ -37,6 +38,7 @@
                 "*://*.vg.no/",
                 "*://*.tb.no/",
                 "*://*.dagbladet.no/",
+                "*://*.bt.no/",
                 "*://*.adressa.no/"
             ],
             "js": ["libs/jquery-1.11.1.min.js", "content_scripts/remove_plus.js"]
