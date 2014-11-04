@@ -9,6 +9,15 @@
 
         switch (url) {
 
+            case "www.bt.no":
+                var targets = $('.df-skin-paywall-closed');
+                
+                $.each(targets, function (index, element) {
+                    elements.push($(this));
+                });
+
+                break;
+
             case "www.vg.no":
                 var targets = $('.article-content .df-img-skin-pluss');
 
