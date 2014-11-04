@@ -14,6 +14,7 @@
                 
                 $.each(targets, function (index, element) {
                     elements.push($(this));
+                    count++;
                 });
 
                 break;
