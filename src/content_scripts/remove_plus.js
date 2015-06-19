@@ -8,7 +8,6 @@
             count = 0;
 
         switch (url) {
-
             case "www.bt.no":
                 var targets = $('.df-skin-paywall-closed');
                 
@@ -35,7 +34,7 @@
                 break;
 
             case "www.tb.no":
-                var targets = $('.bg-paywall');
+                var targets = $('.df-skin-paywall');
                 $.each(targets, function (index, element) {
                     /*if (typeof $(element).parent('.np-modTheme-2') !== 'undefined') {
                         elements.push($(element).closest('.np-modTheme-2'));
@@ -89,7 +88,5 @@
                 parent_nodes.elements[node] = undefined;
             }
         }
-
-        console.log("Removed plus from " + site);
     });
 })(jQuery);
