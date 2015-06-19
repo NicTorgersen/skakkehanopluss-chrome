@@ -56,19 +56,8 @@
                 });
 
                 break;
-
-            case 'www.adressa.no':
-                var targets = [$('.pluss').closest('.widget'), $('.plussDeck')];
-
-                $.each(targets, function (index, elms) {
-                    $.each(elms, function (index, element) {
-                        elements.push($(element));
-                        count++;
-                    });
-                });
-
-                break;
             
+            case 'www.adressa.no':
             case 'www.smp.no':
             case 'www.rbnett.no':
                 var targets = $('.payed');
