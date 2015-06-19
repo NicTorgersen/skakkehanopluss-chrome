@@ -68,6 +68,23 @@
                 });
 
                 break;
+            
+            case 'www.smp.no':
+            case 'www.rbnett.no':
+                var targets = $('.payed');
+                $.each(targets, function (index, element) {
+                    elements.push($(this));
+                    count++;
+                });
+                
+                break;
+                
+            case 'www.tk.no':
+                var targets = $('.am-premium-logo').closest('.am-articleEntry');
+                $.each(targets, function (index, element) {
+                    elements.push($(this));
+                    count++;
+                });
         }
         return {
             elements: elements,
