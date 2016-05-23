@@ -2,7 +2,7 @@
     "manifest_version": 2,
     "name": "Ska'kke ha no' pluss",
     "short_name": "Ska'kke ha no' +",
-    "description": "Fjerner plussartikler fra vg.no, tb.no, ta.no, varden.no, adressa.no, bt.no, dagbladet.no, rbnett.no, smp.no gjengangeren.no og tk.no.",
+    "description": "Fjerner plussartikler fra en rekke norske nettaviser.",
     "author": "Nic",
 
     "version": "1.4.1",
