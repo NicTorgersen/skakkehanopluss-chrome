@@ -18,27 +18,41 @@
 
                 break;
 
-            case "www.vg.no":
-                var targets = $('.article-content .df-img-skin-pluss');
+            case "www.varden.no":
+                var targets = $('.lastImg');
 
                 $.each(targets, function (index, element) {
-                    if (typeof $(element).parent('.article-extract') !== 'undefined') {
-                        count++;
-                        elements.push($(this).closest('.article-extract'));
-                    }
-                    if (typeof $(element).parent('.df-container') !== 'undefined') {
-                        elements.push($(this).closest('.df-container'));
-                    }
+                    count++;
+                    elements.push($(this).closest('article'));
                 });
 
                 break;
 
+            case "www.vg.no":
+                var targets = [$('.article-content .df-img-skin-pluss'), $('#pluss-teaser')];
+
+                $.each(targets, function (index, elmts) {
+                    $.each(elmts, function (index, element) {
+                        if (typeof $(element).parent('.article-extract') !== 'undefined') {
+                            count++;
+                            elements.push($(this).closest('.article-extract'));
+                        } else if (typeof $(element).parent('.df-container') !== 'undefined') {
+                            elements.push($(this).closest('.df-container'));
+                        } else if (typeof $(element).parent('.articles') !== 'undefined') {
+                            elements.push($(this));
+                        }
+                    });
+                });
+
+                break;
+
+            case "www.ta.no":
             case "www.gjengangeren.no":
             case "www.tb.no":
                 var targets = $('.df-skin-paywall');
                 $.each(targets, function (index, element) {
-                    elements.push($(this));
                     count++;
+                    elements.push($(this));
                 });
 
                 break;
