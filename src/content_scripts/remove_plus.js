@@ -89,6 +89,7 @@
 
                 break;
 
+            case 'www.avisa-valdres.no':
             case 'www.tk.no':
                 var targets = $('.am-premium-newLogo').closest('.am-gridComp-item');
                 $.each(targets, function (index, element) {
