@@ -2,10 +2,10 @@
     "manifest_version": 2,
     "name": "Ska'kke ha no' pluss",
     "short_name": "Ska'kke ha no' +",
-    "description": "Fjerner plussartikler fra vg.no, tb.no, adressa.no, bt.no, dagbladet.no, rbnett.no, smp.no og tk.no.",
+    "description": "Fjerner plussartikler fra vg.no, tb.no, adressa.no, bt.no, dagbladet.no, rbnett.no, smp.no gjengangeren.no og tk.no.",
     "author": "Nic",
 
-    "version": "1.3.6",
+    "version": "1.4.0",
 
     "icons": {
         "16": "assets/icon16.png",
@@ -29,6 +29,7 @@
         "*://*.tk.no/",
         "*://*.smp.no/",
         "*://*.rbnett.no/",
+        "*://*.gjengangeren.no/",
         "notifications"
     ],
     "background": {
@@ -45,7 +46,8 @@
                 "*://*.adressa.no/",
                 "*://*.tk.no/",
                 "*://*.smp.no/",
-                "*://*.rbnett.no/"
+                "*://*.rbnett.no/",
+                "*://*.gjengangeren.no/"
             ],
             "js": ["libs/jquery-1.11.1.min.js", "content_scripts/remove_plus.js"]
         }

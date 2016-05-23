@@ -10,7 +10,7 @@
         switch (url) {
             case "www.bt.no":
                 var targets = $('.df-skin-paywall-closed');
-                
+
                 $.each(targets, function (index, element) {
                     elements.push($(this));
                     count++;
@@ -33,12 +33,10 @@
 
                 break;
 
+            case "www.gjengangeren.no":
             case "www.tb.no":
                 var targets = $('.df-skin-paywall');
                 $.each(targets, function (index, element) {
-                    /*if (typeof $(element).parent('.np-modTheme-2') !== 'undefined') {
-                        elements.push($(element).closest('.np-modTheme-2'));
-                    }*/
                     elements.push($(this));
                     count++;
                 });
@@ -46,17 +44,26 @@
                 break;
 
             case 'www.dagbladet.no':
-                var targets = [$('.plussEmblem').closest('.ddCell'), $('.plussbox_container')];
+                // dagbladet 23.05.2016
+                // Plussartikler vises ved et label i sort under artikkelen
+                // Labelet er et span-element med klassen "label" og "black"
+                //
+                // Top-level elementet er et HTML5 element "article"
+
+                var targets = [$('.label.black')];
+                var searchTerm = "Dagbladet Pluss";
 
                 $.each(targets, function (index, elms) {
                     $.each(elms, function (index, element) {
-                        elements.push($(element));
-                        count++;
+                        if ($(element).text() === searchTerm) {
+                            elements.push($(element).closest('article'));
+                            count++;
+                        }
                     });
                 });
 
                 break;
-            
+
             case 'www.adressa.no':
             case 'www.smp.no':
             case 'www.rbnett.no':
@@ -65,11 +72,11 @@
                     elements.push($(this));
                     count++;
                 });
-                
+
                 break;
-                
+
             case 'www.tk.no':
-                var targets = $('.am-premium-logo').closest('.am-articleEntry');
+                var targets = $('.am-premium-newLogo').closest('.am-gridComp-item');
                 $.each(targets, function (index, element) {
                     elements.push($(this));
                     count++;
@@ -90,6 +97,11 @@
 
         for (node in parent_nodes.elements) {
             if (parent_nodes.elements[node].length > 0 && typeof parent_nodes.elements[node] !== 'undefined') {
+                var currentElement = parent_nodes.elements[node],
+                    elementHeight = currentElement.height();
+
+
+
                 parent_nodes.elements[node].css('display', 'none');
                 parent_nodes.elements[node] = undefined;
             }
