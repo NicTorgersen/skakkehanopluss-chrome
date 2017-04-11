@@ -5,121 +5,136 @@
     function getSiteElements (host) {
         var url = host,
             elements = [],
-            count = 0;
+            count = 0
 
         switch (url) {
             case "www.bt.no":
-                var targets = $('.df-skin-paywall-closed');
+                var targets = $('.df-skin-paywall-closed')
 
                 $.each(targets, function (index, element) {
-                    elements.push($(this));
-                    count++;
-                });
+                    elements.push($(this))
+                    count++
+                })
 
-                break;
+                break
 
             case "www.varden.no":
-                var targets = $('.lastImg');
+                var targets = $('.plus_button')
 
                 $.each(targets, function (index, element) {
-                    count++;
-                    elements.push($(this).closest('article'));
-                });
+                    count++
+                    console.log(this)
+                    elements.push($(this).closest('article'))
+                })
 
-                break;
+                break
 
             case "www.vg.no":
-                var targets = [$('.article-content .df-img-skin-pluss'), $('#pluss-teaser')];
+                var targets = [$('.article-content .df-img-skin-pluss'), $('#pluss-teaser')]
 
                 $.each(targets, function (index, elmts) {
                     $.each(elmts, function (index, element) {
                         if (typeof $(element).parent('.article-extract') !== 'undefined') {
-                            count++;
-                            elements.push($(this).closest('.article-extract'));
+                            count++
+                            elements.push($(this).closest('.article-extract'))
                         } else if (typeof $(element).parent('.df-container') !== 'undefined') {
-                            elements.push($(this).closest('.df-container'));
+                            elements.push($(this).closest('.df-container'))
                         } else if (typeof $(element).parent('.articles') !== 'undefined') {
-                            elements.push($(this));
+                            elements.push($(this))
                         }
-                    });
-                });
+                    })
+                })
 
-                break;
+                break
 
             case "www.ta.no":
             case "www.gjengangeren.no":
             case "www.tb.no":
-                var targets = $('.df-skin-paywall');
+                var targets = $('.df-skin-paywall')
                 $.each(targets, function (index, element) {
-                    count++;
-                    elements.push($(this));
-                });
+                    count++
+                    elements.push($(this))
+                })
 
-                break;
+                break
 
             case 'www.dagbladet.no':
-                // dagbladet 23.05.2016
-                // Plussartikler vises ved et label i sort under artikkelen
-                // Labelet er et span-element med klassen "label" og "black"
-                //
-                // Top-level elementet er et HTML5 element "article"
-
-                var targets = [$('.label.black')];
-                var searchTerm = "Dagbladet Pluss";
+                var targets = [$('.label.black')]
+                var searchTerm = "Dagbladet Pluss"
 
                 $.each(targets, function (index, elms) {
                     $.each(elms, function (index, element) {
                         if ($(element).text() === searchTerm) {
-                            elements.push($(element).closest('article'));
-                            count++;
+                            elements.push($(element).closest('article'))
+                            count++
                         }
-                    });
-                });
+                    })
+                })
 
-                break;
+                break
 
             case 'www.adressa.no':
             case 'www.smp.no':
             case 'www.rbnett.no':
-                var targets = $('.payed');
+                var targets = $('.payed')
                 $.each(targets, function (index, element) {
-                    elements.push($(this));
-                    count++;
-                });
+                    elements.push($(this))
+                    count++
+                })
 
-                break;
+                break
+
+            case 'www.dn.no':
+                var targets = $('.df-skin-paid')
+                $.each(targets, function (index, element) {
+                    elements.push($(this))
+                    count++
+                })
+
+                break
 
             case 'www.avisa-valdres.no':
-            case 'www.tk.no':
-                var targets = $('.am-premium-newLogo').closest('.am-gridComp-item');
+                var targets = $('[class^=\'am-premium-\']')
                 $.each(targets, function (index, element) {
-                    elements.push($(this));
-                    count++;
-                });
+                    elements.push($(element).closest('.am-gridComp-item'))
+                    count++
+                })
+                break
+
+            case 'www.tk.no':
+                var targets = $('.df-skin-paywall')
+                $.each(targets, function (index, element) {
+                    elements.push($(this))
+                    count++
+                })
         }
+
         return {
             elements: elements,
             count: count
-        };
+        }
     }
 
     $(document).ready(function () {
         var site = window.location.host,
             parent_nodes = getSiteElements(site),
-            count = parent_nodes.count;
+            count = parent_nodes.count
 
-        chrome.runtime.sendMessage({fromCS: true, type: 'main', url: site, objectsFound: count});
+        chrome.runtime.sendMessage({fromCS: true, type: 'main', url: site, objectsFound: count})
 
-        for (node in parent_nodes.elements) {
-            if (parent_nodes.elements[node].length > 0 && typeof parent_nodes.elements[node] !== 'undefined') {
-                var currentElement = parent_nodes.elements[node],
-                    elementHeight = currentElement.height();
+        for (var i = 0; i < parent_nodes.elements.length; i++) {
+            if (parent_nodes.elements[i].length > 0 && typeof parent_nodes.elements[i] !== 'undefined') {
+                var currentElement = parent_nodes.elements[i],
+                    cachedHeight = currentElement.height(),
+                    cachedWidth = currentElement.width()
 
-
-
-                parent_nodes.elements[node].css('display', 'none');
-                parent_nodes.elements[node] = undefined;
+                currentElement.empty()
+                currentElement.css({
+                    'height': cachedHeight,
+                    'width': cachedWidth,
+                    'background': 'rgba(216, 8, 8, 0.1)'
+                })
             }
         }
-    });
-})(jQuery);
+    })
+})(jQuery)
