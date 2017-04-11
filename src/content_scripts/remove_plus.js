@@ -23,7 +23,6 @@
 
                 $.each(targets, function (index, element) {
                     count++
-                    console.log(this)
                     elements.push($(this).closest('article'))
                 })
 
