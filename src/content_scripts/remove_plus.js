@@ -1,7 +1,5 @@
 (function ($) {
 
-    // to do: clean up
-
     function getSiteElements (host) {
         var url = host,
             elements = [],
@@ -49,6 +47,7 @@
             case "www.ta.no":
             case "www.gjengangeren.no":
             case "www.tb.no":
+            case "www.ba.no":
                 var targets = $('.df-skin-paywall')
                 $.each(targets, function (index, element) {
                     count++
@@ -119,7 +118,9 @@
             parent_nodes = getSiteElements(site),
             count = parent_nodes.count
 
-        chrome.runtime.sendMessage({fromCS: true, type: 'main', url: site, objectsFound: count})
+        chrome.runtime.sendMessage({
+            type: 'notifyRemove', url: site, objectsFound: count
+        })
 
         for (var i = 0; i < parent_nodes.elements.length; i++) {
             if (parent_nodes.elements[i].length > 0 && typeof parent_nodes.elements[i] !== 'undefined') {
@@ -127,12 +128,14 @@
                     cachedHeight = currentElement.height(),
                     cachedWidth = currentElement.width()
 
-                currentElement.empty()
-                currentElement.css({
-                    'height': cachedHeight,
-                    'width': cachedWidth,
-                    'background': 'rgba(216, 8, 8, 0.1)'
-                })
+                // currentElement.empty()
+                // currentElement.css({
+                //     'height': cachedHeight,
+                //     'width': cachedWidth,
+                //     'background': 'rgba(216, 8, 8, 0.1)'
+                // })
+
+                currentElement.css('display', 'none')
             }
         }
     })
