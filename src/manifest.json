@@ -5,7 +5,7 @@
     "description": "Fjerner plussartikler fra en rekke norske nettaviser.",
     "author": "Nic",
 
-    "version": "1.5.1",
+    "version": "1.5.4",
 
     "icons": {
         "16": "assets/icon16.png",
@@ -37,7 +37,8 @@
         "*://*.avisa-valdres.no/",
         "*://*.dn.no/",
         "*://*.ba.no/",
-        "notifications"
+        "notifications",
+        "storage"
     ],
 
     "background": {
@@ -63,7 +64,7 @@
                 "*://*.dn.no/",
                 "*://*.ba.no/"
             ],
-            "js": ["libs/jquery-1.11.1.min.js", "content_scripts/remove_plus.js"]
+            "js": ["libs/jquery-3.2.1.min.js", "content_scripts/remove_plus.js"]
         }
     ]
 }

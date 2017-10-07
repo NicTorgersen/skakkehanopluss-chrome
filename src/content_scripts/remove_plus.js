@@ -92,6 +92,7 @@
                 break
 
             case 'www.avisa-valdres.no':
+            case 'www.an.no':
                 var targets = $('[class^=\'am-premium-\']')
                 $.each(targets, function (index, element) {
                     elements.push($(element).closest('.am-gridComp-item'))
@@ -118,8 +119,14 @@
             parent_nodes = getSiteElements(site),
             count = parent_nodes.count
 
-        chrome.runtime.sendMessage({
-            type: 'notifyRemove', url: site, objectsFound: count
+        chrome.storage.sync.get('verbose', (obj) => {
+            if (obj.hasOwnProperty('verbose')) {
+                if (obj.verbose) {
+                    chrome.runtime.sendMessage({
+                        type: 'notifyRemove', url: site, objectsFound: count
+                    })
+                }
+            }
         })
 
         for (var i = 0; i < parent_nodes.elements.length; i++) {
