@@ -119,14 +119,8 @@
             parent_nodes = getSiteElements(site),
             count = parent_nodes.count
 
-        chrome.storage.sync.get('verbose', (obj) => {
-            if (obj.hasOwnProperty('verbose')) {
-                if (obj.verbose) {
-                    chrome.runtime.sendMessage({
-                        type: 'notifyRemove', url: site, objectsFound: count
-                    })
-                }
-            }
+        chrome.runtime.sendMessage({
+            type: 'notifyRemove', url: site, objectsFound: count
         })
 
         for (var i = 0; i < parent_nodes.elements.length; i++) {

@@ -17,7 +17,7 @@
         $("#notify-change").fadeIn(400, () => {})
         setTimeout(() => {
             $("#notify-change").fadeOut(400, () => {})
-        }, 3000)
+        }, 1000)
     }
 
     $(document).ready(function () {
